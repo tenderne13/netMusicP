@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+        html{background-color: #D9D9D9;}
+    </style>
+</head>
+<body>
+<div id="app" style="margin: 300px auto; text-align: center; font-size: 20px;">
+	<input type='text' id="btn" value='http://m10.music.126.net/20170915150203/ead606de1e81c5f4cd7ee627f3998104/ymusic/5f28/0032/0410/9064ee6d6f3a0641b9c26d9af2d08430.mp3'></input>
+    <input type='button' id="btn" value='按钮' onclick="down();"></input>
+</div>
+<script>
+    function down(){
+		var url="http://m10.music.126.net/20170915150203/ead606de1e81c5f4cd7ee627f3998104/ymusic/5f28/0032/0410/9064ee6d6f3a0641b9c26d9af2d08430.mp3";
+		downloadFile(url);
+	}
+
+	window.downloadFile = function (sUrl) {
+
+    //iOS devices do not support downloading. We have to inform user about this.
+    if (/(iP)/g.test(navigator.userAgent)) {
+        alert('Your device does not support files downloading. Please try again in desktop browser.');
+        return false;
+    }
+
+    //If in Chrome or Safari - download via virtual link click
+    if (window.downloadFile.isChrome || window.downloadFile.isSafari) {
+        //Creating new link node.
+        var link = document.createElement('a');
+        link.href = sUrl;
+
+        if (link.download !== undefined) {
+            //Set HTML5 download attribute. This will prevent file from opening if supported.
+            var fileName = sUrl.substring(sUrl.lastIndexOf('/') + 1, sUrl.length);
+            link.download = fileName;
+        }
+
+        //Dispatching click event.
+        if (document.createEvent) {
+            var e = document.createEvent('MouseEvents');
+            e.initEvent('click', true, true);
+            link.dispatchEvent(e);
+            return true;
+        }
+    }
+
+    // Force file download (whether supported by server).
+    if (sUrl.indexOf('?') === -1) {
+        sUrl += '?download';
+    }
+
+    window.open(sUrl, '_self');
+    return true;
+}
+
+window.downloadFile.isChrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1;
+window.downloadFile.isSafari = navigator.userAgent.toLowerCase().indexOf('safari') > -1;
+</script>
+</body>
+</html>

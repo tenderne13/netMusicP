@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>网易云音乐</title>
+    <meta charset="UTF-8">
+    <script src="/static/js/jquery-1.12.2.js"></script>
+    <script src="/static/layer/layer.js"></script>
+    <script src="/static/js/down.js"></script>
+    <script src="/static/js/lowebutil.js"></script>
+    <script src="/static/js/myMusic2.0.js"></script>
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="/static/css/player.css" rel="stylesheet"/>
+    <link href="/static/css/cover.css" rel="stylesheet"/>
+
+
+    <script src="/static/player/skPlayer2.0.js"></script>
+    <link href="/static/css/skPlayer.css" rel="stylesheet"/>
+
+</head>
+<script type="text/javascript">
+	$(function () {
+		var id = '{{ id }}';
+		netPlayer.playList(id);
+	});
+
+</script>
+<body>
+
+<div class="site-wrapper">
+    <div class="site-wrapper-innerd" style="height: 100%">
+        <div class="cover-container">
+            <div class="playlist-detail">
+                <div class="detail-head" id="order">
+
+                </div>
+                <ul class="detail-songlist" id="orderList">
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
